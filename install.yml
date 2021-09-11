@@ -1,0 +1,8 @@
+---
+- name: Debug
+  debug:
+    msg: Hello
+- name: Download foo.conf
+  get_url:
+    url: https://nodejs.org/dist/v14.17.2/node-v14.17.2-linux-x64.tar.xz
+    dest: /opt/nodejs.tar.xz
