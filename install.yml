@@ -16,3 +16,7 @@
       src: /opt/node.tar.xz
       dest: /opt/node
       remote_src: yes
+  - name: Change file ownership, group and permissions
+    ansible.builtin.file:
+      path: /opt/node
+      state: directory
