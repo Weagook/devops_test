@@ -11,3 +11,7 @@
     get_url:
       url: https://nodejs.org/dist/v14.17.6/node-v14.17.6-linux-x64.tar.xz
       dest: /opt/node.tar.xz
+  - name: Extract foo.tgz into /var/lib/foo
+    ansible.builtin.unarchive:
+      src: /opt/node.tar.xz
+      dest: /opt/node
