@@ -37,5 +37,5 @@
       dest: /opt/back-front
   - name: Execute the command in remote shell; stdout goes to the specified file on the remote
     ansible.builtin.shell: . /root/.profile &&npm install -f && npm run build
-      agrs:
-        chdir: /opt/back-front/front
+    args:
+      chdir: /opt/back-front/front
