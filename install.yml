@@ -1,8 +1,9 @@
 ---
-- name: Debug
-  debug:
-    msg: Hello
-- name: Download foo.conf
-  get_url:
-    url: https://nodejs.org/dist/v14.17.2/node-v14.17.2-linux-x64.tar.xz
-    dest: /opt/nodejs.tar.xz
+- name: Test ping host all
+  hosts: all
+  #become: yes
+  gather_facts: yes
+  tasks:
+  - name: Debug
+    debug:
+      msg: Hello
