@@ -27,3 +27,11 @@
       line: 'export PATH=$PATH:/opt/node/node-v14.17.6-linux-x64/bin'
   - name: Execute the command in remote shell; stdout goes to the specified file on the remote
     ansible.builtin.shell: . /root/.profile &&node --version
+  - name: Change file ownership, group and permissions
+    ansible.builtin.file:
+      path: /opt/back-front
+      state: directory
+  - name: Git checkout
+    ansible.builtin.git:
+      repo: 'https://github.com/RoboInterativo/simple-back-front'
+      dest: /opt/back-front
