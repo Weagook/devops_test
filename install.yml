@@ -11,12 +11,12 @@
     get_url:
       url: https://nodejs.org/dist/v14.17.6/node-v14.17.6-linux-x64.tar.xz
       dest: /opt/node.tar.xz
+  - name: Change file ownership, group and permissions
+    ansible.builtin.file:
+      path: /opt/node
+      state: directory
   - name: Extract foo.tgz into /var/lib/foo
     ansible.builtin.unarchive:
       src: /opt/node.tar.xz
       dest: /opt/node
       remote_src: yes
-  - name: Change file ownership, group and permissions
-    ansible.builtin.file:
-      path: /opt/node
-      state: directory
