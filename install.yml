@@ -90,13 +90,7 @@
 
   # Install Flask
   - pip:
-      name: flask
-
-  # Install lxml
-  - pip:
-      name: lxml
-
-  # Install Flask
-  - pip:
-      name: virtualvenv
-      virtualvenv: /opt/back-front/back/virtualvenv
+      name:
+        - flask
+        - lxml
+        - json
