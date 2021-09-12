@@ -1,3 +1,2 @@
 node_version: 14.17.6
 node_url: https://nodejs.org/dist/v14.17.6/node-v{{ node_version }}-linux-x64.tar.xz
-virtualvenv_path: /opt/back-front/back/virtualvenv

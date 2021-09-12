@@ -84,19 +84,18 @@
       dest: /opt/back-front/www/html
       remote_src: yes
 
-  # Install Python
-  #- pip:
-  #    name: python==3.6
-  #    chdir:
-
   - name: Install the package "python-pip"
     apt:
       name: python-pip
 
-  - name: Install the package "python-pip3"
-    apt:
-      name: python-pip3
-
   - name: Install the package "virtualvenv"
     apt:
       name: virtualvenv
+
+  # Install Flask
+  - pip:
+      name: flask
+
+  # Install lxml
+  - pip:
+      name: lxml
