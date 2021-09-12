@@ -78,5 +78,7 @@
       path: /opt/back-front/www/html
       state: directory
 
-  - name: Ansible copy files remote to remote
-      shell: 'cp -r /opt/back-front/front/build/. /opt/back-front/www/html'
+  - name: copy build from html
+    copy:
+      src: /opt/back-front/front/build
+      dest: /opt/back-front/www/html
