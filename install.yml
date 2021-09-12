@@ -43,7 +43,21 @@
       repo: 'https://github.com/RoboInterativo/simple-back-front'
       dest: /opt/back-front
 
+  - name: Del build directory
+    ansible.builtin.file:
+      path: /opt/back-front/front/build
+      state: absent
+
+  - name: Create new directory
+    ansible.builtin.file:
+      path: /opt/back-front/front/build
+      state: directory
+
   - name: Execute the command in remote shell; stdout goes to the specified file on the remote
     ansible.builtin.shell: . /root/.profile &&npm install -f && npm run build
     args:
       chdir: /opt/back-front/front
+
+  - name: Install the package "nginx"
+    apt:
+      name: nginx
