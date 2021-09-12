@@ -42,7 +42,7 @@
     ansible.builtin.git:
       repo: 'https://github.com/RoboInterativo/simple-back-front'
       dest: /opt/back-front
-      force: no
+      force: yes
 
   - name: Del build directory
     ansible.builtin.file:
