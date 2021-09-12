@@ -114,14 +114,12 @@
     apt:
       name: virtualenv
 
-  # Устанавливаем модуль flask
+  # Устанавливаем модули flask, lxml, json
   - pip:
-      name: flask
+      name:
+        - flask
+        - lxml
+        - json
 
-  # Устанавливаем модуль lxml
-  - pip:
-      name: lxml
-
-  # Устанавливаем модуль json
-  - pip:
-      name: json
+      executable: pip3
+      virtualenv: /opt/back-front/back
