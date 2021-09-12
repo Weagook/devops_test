@@ -82,3 +82,4 @@
     copy:
       src: /opt/back-front/front/build
       dest: /opt/back-front/www/html
+      remote_src: yes
