@@ -10,7 +10,7 @@
 
   - name: Download nodejs
     get_url:
-      url: {{ node_url }}
+      url: "{{ node_url }}"
       dest: /opt/node.tar.xz
 
   - name: Create new directory
