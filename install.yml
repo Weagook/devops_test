@@ -88,9 +88,10 @@
     apt:
       name: python-pip
 
-  # Install Flask
-  - pip:
-      name:
-        - flask
-        - lxml
-        - json
+  - name: Install the package "setuptools"
+    apt:
+      name: setuptools
+
+  - name: Install the package "virtualenv"
+    apt:
+      name: virtualenv
