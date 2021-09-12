@@ -62,3 +62,18 @@
   - name: Install the package "nginx"
     apt:
       name: nginx
+
+  - name: Del build directory
+    ansible.builtin.file:
+      path: /opt/back-front/www/html
+      state: absent
+
+  - name: Create new directory
+    ansible.builtin.file:
+      path: /opt/back-front/www/
+      state: directory
+
+  - name: Create new directory
+    ansible.builtin.file:
+      path: /opt/back-front/www/html
+      state: directory
