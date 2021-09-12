@@ -115,13 +115,13 @@
       name: virtualenv
 
   # Устанавливаем модуль flask
-  - pip:
+  - pip3:
       name: flask
 
   # Устанавливаем модуль lxml
-  - pip:
+  - pip3:
       name: lxml
 
   # Устанавливаем модуль json
-  - pip:
+  - pip3:
       name: json
