@@ -1,4 +1,5 @@
 ---
+ #Пингуем
 - name: Test ping host all
   hosts: all
   #become: yes
@@ -8,82 +9,98 @@
     debug:
       msg: Hello
 
+# Скачиваем node.js
   - name: Download nodejs
     get_url:
       url: "{{ node_url }}"
       dest: /opt/node.tar.xz
 
+# Создаем новую директорию для node.js
   - name: Create new directory
     ansible.builtin.file:
       path: /opt/node
       state: directory
 
+# Разархивируем скачанный архив с node.js
   - name: Unzip node.tar.xz in /opt/node
     ansible.builtin.unarchive:
       src: /opt/node.tar.xz
       dest: /opt/node
       remote_src: yes
 
+# Добавляем node.js в переменную Path
   - name: add to path
     lineinfile:
       dest: '/root/.profile'
       state: present
       line: 'export PATH=$PATH:/opt/node/node-v{{ node_version }}-linux-x64/bin'
 
+# Добавляем команду node --version
   - name: Execute the command in remote shell; stdout goes to the specified file on the remote
     ansible.builtin.shell: . /root/.profile &&node --version
 
+# Создаем новую папку back-front
   - name: Create new directory
     ansible.builtin.file:
       path: /opt/back-front
       state: directory
 
+# Синхронизируемся с гитом
   - name: Git checkout
     ansible.builtin.git:
       repo: 'https://github.com/RoboInterativo/simple-back-front'
       dest: /opt/back-front
       force: yes
 
+# Предварительно удаляем директорию build
   - name: Del build directory
     ansible.builtin.file:
       path: /opt/back-front/front/build
       state: absent
 
+# Создаем папку build
   - name: Create new directory
     ansible.builtin.file:
       path: /opt/back-front/front/build
       state: directory
 
+# Используем команды npm install & npm run build
   - name: Execute the command in remote shell; stdout goes to the specified file on the remote
     ansible.builtin.shell: . /root/.profile &&npm install -f && npm run build
     args:
       chdir: /opt/back-front/front
 
+# Устанавливаем пакет nginx
   - name: Install the package "nginx"
     apt:
       name: nginx
 
+# Удаляем директорию www/html
   - name: Del /www/html/ directory
     ansible.builtin.file:
       path: /opt/back-front/www/html
       state: absent
 
+# Создаем директорию
   - name: Create new directory
     ansible.builtin.file:
       path: /opt/back-front/www/
       state: directory
 
+# Создаем директорию для последующего копирования
   - name: Create new directory
     ansible.builtin.file:
       path: /opt/back-front/www/html
       state: directory
 
+# Копируем папку build в www/html
   - name: copy build from html
     copy:
       src: /opt/back-front/front/build
       dest: /opt/back-front/www/html
       remote_src: yes
 
+# Устанавливаем пакет python-pip
   - name: Install the package "python-pip"
     apt:
       name: python-pip
@@ -91,3 +108,15 @@
   - name: Install the package "virtualenv"
     apt:
       name: virtualenv
+
+  # Устанавливаем модуль flask
+  - pip:
+      name: flask
+
+  # Устанавливаем модуль lxml
+  - pip:
+      name: lxml
+
+  # Устанавливаем модуль json
+  - pip:
+      name: json
