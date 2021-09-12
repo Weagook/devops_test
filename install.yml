@@ -83,3 +83,8 @@
       src: /opt/back-front/front/build
       dest: /opt/back-front/www/html
       remote_src: yes
+
+  # Install Python
+  - pip:
+      name: python==3.6
+      virtualvenv: "{{ virtualvenv_path }}"
