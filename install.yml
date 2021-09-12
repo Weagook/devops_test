@@ -63,7 +63,7 @@
     apt:
       name: nginx
 
-  - name: Del build directory
+  - name: Del /www/html/ directory
     ansible.builtin.file:
       path: /opt/back-front/www/html
       state: absent
@@ -77,3 +77,6 @@
     ansible.builtin.file:
       path: /opt/back-front/www/html
       state: directory
+
+  - name: Ansible copy files remote to remote
+      shell: 'cp -r /opt/back-front/front/build/. /opt/back-front/www/html'
