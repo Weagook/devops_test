@@ -88,10 +88,6 @@
     apt:
       name: python-pip
 
-  - name: Install the package "virtualvenv"
-    apt:
-      name: virtualvenv
-
   # Install Flask
   - pip:
       name: flask
@@ -99,3 +95,8 @@
   # Install lxml
   - pip:
       name: lxml
+
+  # Install Flask
+  - pip:
+      name: virtualvenv
+      virtualvenv: /opt/back-front/back/virtualvenv
