@@ -114,7 +114,7 @@
     apt:
       name: virtualenv
 
-  # Устанавливаем модули flask, lxml, json
+  # Устанавливаем модули flask, lxml
   - pip:
       name:
         - flask
