@@ -7,34 +7,42 @@
   - name: Debug
     debug:
       msg: Hello
+
   - name: Download nodejs
     get_url:
-      url: https://nodejs.org/dist/v14.17.6/node-v14.17.6-linux-x64.tar.xz
+      url: {{ node_url }}
       dest: /opt/node.tar.xz
-  - name: Change file ownership, group and permissions
+
+  - name: Create new directory
     ansible.builtin.file:
       path: /opt/node
       state: directory
-  - name: Extract foo.tgz into /var/lib/foo
+
+  - name: Unzip node.tar.xz in /opt/node
     ansible.builtin.unarchive:
       src: /opt/node.tar.xz
       dest: /opt/node
       remote_src: yes
+
   - name: add to path
     lineinfile:
       dest: '/root/.profile'
       state: present
-      line: 'export PATH=$PATH:/opt/node/node-v14.17.6-linux-x64/bin'
+      line: 'export PATH=$PATH:/opt/node/node-v{{ node_version }}-linux-x64/bin'
+
   - name: Execute the command in remote shell; stdout goes to the specified file on the remote
     ansible.builtin.shell: . /root/.profile &&node --version
-  - name: Change file ownership, group and permissions
+
+  - name: Create new directory
     ansible.builtin.file:
       path: /opt/back-front
       state: directory
+
   - name: Git checkout
     ansible.builtin.git:
       repo: 'https://github.com/RoboInterativo/simple-back-front'
       dest: /opt/back-front
+
   - name: Execute the command in remote shell; stdout goes to the specified file on the remote
     ansible.builtin.shell: . /root/.profile &&npm install -f && npm run build
     args:
