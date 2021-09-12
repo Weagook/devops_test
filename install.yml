@@ -88,10 +88,6 @@
     apt:
       name: python-pip
 
-  - name: Install the package "setuptools"
-    apt:
-      name: setuptools
-
   - name: Install the package "virtualenv"
     apt:
       name: virtualenv
