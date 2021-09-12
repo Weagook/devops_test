@@ -119,5 +119,4 @@
       name:
         - flask
         - lxml
-        - json
-      executable: pip3
+      virtualenv: /opt/back-front/back/virtualenv
