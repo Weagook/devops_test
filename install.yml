@@ -105,6 +105,11 @@
     apt:
       name: python-pip
 
+# Устанавливаем пакет python3-pip
+  - name: Install the package "python3-pip"
+    apt:
+      name: python3-pip
+# Устанавливаем пакет virtualenv
   - name: Install the package "virtualenv"
     apt:
       name: virtualenv
